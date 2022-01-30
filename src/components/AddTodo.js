@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
+import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
+import { THEME } from '../theme'
 
 export const AddTodo = ({ onSubmit }) => {
     const [value, setValue] = useState('')
@@ -7,8 +9,9 @@ export const AddTodo = ({ onSubmit }) => {
     const pressHandler = () => {
         if (value.trim()) {
             onSubmit(value)
-            // setValue('')
-        }else {
+            setValue('')
+            Keyboard.dismiss()
+        } else {
             Alert.alert('Cant be emty!')
         }
 
@@ -24,7 +27,12 @@ export const AddTodo = ({ onSubmit }) => {
                 autoCorrect={false}
                 autoCapitalize='none'
             />
-            <Button title="Add" style={styles.button} onPress={pressHandler} />
+            <AntDesign.Button style={styles.button} onPress={pressHandler} name='pluscircleo'>
+                Add
+            </AntDesign.Button>
+            {/* <TouchableOpacity style={styles.button} onPress={pressHandler}>
+                <Text style={styles.text}>+</Text>
+            </TouchableOpacity> */}
         </View>
     )
 }
@@ -32,14 +40,26 @@ export const AddTodo = ({ onSubmit }) => {
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center'
     },
     input: {
-        width: '70%',
+        width: '60%',
         padding: 10,
         borderStyle: 'solid',
         borderBottomWidth: 2,
-        borderBottomColor: '#3949AB',
+        borderBottomColor: THEME.MAIN_COLOR,
+    },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        elevation: 3,
+        backgroundColor: THEME.MAIN_COLOR
+    },
+    text: {
+        color: 'white',
+        fontSize: 20
     }
 })
