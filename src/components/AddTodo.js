@@ -30,9 +30,6 @@ export const AddTodo = ({ onSubmit }) => {
             <AntDesign.Button style={styles.button} onPress={pressHandler} name='pluscircleo'>
                 Add
             </AntDesign.Button>
-            {/* <TouchableOpacity style={styles.button} onPress={pressHandler}>
-                <Text style={styles.text}>+</Text>
-            </TouchableOpacity> */}
         </View>
     )
 }

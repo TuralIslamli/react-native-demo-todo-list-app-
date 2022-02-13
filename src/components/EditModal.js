@@ -6,26 +6,31 @@ import { AppButton } from "./ui/AppButton";
 export const EditModal = ({ visible, onCancel, value, onSave }) => {
     const [editValue, setEditValue] = useState(value)
 
-    const saveHandler = () =>{
-        if(!editValue.trim()){
+    const saveHandler = () => {
+        if (!editValue.trim()) {
             Alert.alert('Error', 'Cant be emty!')
-        }else{
+        } else {
             onSave(editValue)
         }
+    }
+
+    const cancelHandler = () => {
+        setEditValue(value)
+        onCancel()
     }
     return (
         <Modal visible={visible} animationType="fade">
             <View style={styles.wrap}>
                 <TextInput
-                value={editValue} 
-                onChangeText={setEditValue}
-                style={styles.input} 
-                placeholder="Enter the title" 
-                autoCapitalize="none" 
-                autoCorrect={false}/>
-                <View style = {styles.buttons}>
-                    <AppButton title="Cancel" onPress={onCancel} color={THEME.DANGER_COLOR}/>
-                    <AppButton title="Save" onPress={saveHandler}/>
+                    value={editValue}
+                    onChangeText={setEditValue}
+                    style={styles.input}
+                    placeholder="Enter the title"
+                    autoCapitalize="none"
+                    autoCorrect={false} />
+                <View style={styles.buttons}>
+                    <AppButton title="Cancel" onPress={cancelHandler} color={THEME.DANGER_COLOR} />
+                    <AppButton title="Save" onPress={saveHandler} />
                 </View>
             </View>
         </Modal>
@@ -33,7 +38,7 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
 }
 
 const styles = StyleSheet.create({
-    buttons:{
+    buttons: {
         width: '100%',
         marginTop: 10,
         flexDirection: 'row',

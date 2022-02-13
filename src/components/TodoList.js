@@ -10,7 +10,7 @@ export const TodoList = ({ todoList, onRemove, onOpen }) => {
                     key={item.id}
                     activeOpacity={0.5}
                     onPress={() => onOpen(item.id)}
-                    onLongPress={()=>onRemove(item.id)}
+                    onLongPress={() => onRemove(item.id)}
                 >
                     <Text style={styles.todoList}>{item.title}</Text>
                 </TouchableOpacity>
